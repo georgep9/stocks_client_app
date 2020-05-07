@@ -31,3 +31,12 @@
   margin-left: 250px;
   text-align: center;
 }
+
+.stock {
+  text-align: left;
+}
+
+.stock ul li {
+  width: 33%;
+  display: inline-block;
+}
