@@ -31,10 +31,10 @@ function App() {
       <Router>
 
         <div className="sideMenu">
-          <Link to="/" style={{textDecoration: "none"}}><h2>Home</h2></Link>
-          <Link to="/Stocks" style={{textDecoration: "none"}}><h2>Stocks</h2></Link>
-          <Link to="/Quote" style={{textDecoration: "none"}}><h2>Quote</h2></Link>
-          <Link to="/PriceHistory" style={{textDecoration: "none"}}><h2>Price History</h2></Link>
+          <Link to="/" style={{textDecoration: "none"}}><h2 id="home">Home</h2></Link>
+          <Link to="/Stocks" style={{textDecoration: "none"}}><h2 id="stocks">Stocks</h2></Link>
+          <Link to="/Quote" style={{textDecoration: "none"}}><h2 id="quote">Quote</h2></Link>
+          <Link to="/PriceHistory" style={{textDecoration: "none"}}><h2 id="priceHistory">Price History</h2></Link>
         </div>
 
         <div className="main">
