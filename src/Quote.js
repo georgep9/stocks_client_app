@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { GetParticularStock } from './api';
 
+import Login from "./Login"
+
 
 function Stock({entry}){
 
@@ -42,6 +44,7 @@ function Quote() {
         <button onClick={() => setStock(document.getElementById("input").value)}>Search</button>
 
       <Stock entry={stocks} />
+
       
     </div>
   );

@@ -1,8 +1,10 @@
 import {useState, useEffect} from 'react';
 
+const API_URL = "http://131.181.190.87:3000";
+
 function FetchStocks(query){
 
-    var url = "http://131.181.190.87:3000/stocks/" + query;
+    const url = API_URL + "/stocks/" + query;
 
     console.log(url);
 
@@ -48,4 +50,35 @@ export function GetAllStocks(industry){
 }
 
 export function GetParticularStock(stock){ return useStocks(stock); }
+
+
+export function LoginAPI(details){
+
+    const url = API_URL + "/user/login";
+
+    var email = "";
+    var password = "";
+    details && (email = details.email) && (password = details.password);
+
+    const [response, setResponse] = useState(null);
+
+    useEffect (
+        () => {
+            if (details === null) { return undefined; }
+            fetch(url, {
+                method: "POST",
+                headers: { accept: "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({ 'email': email, 'password': password})
+            })
+            .then((res) => res.json())
+            .then((json) => {
+                setResponse(json);
+            })
+        },
+        [url, email, password, details]
+    )
+
+    return response;
+    
+}
 
