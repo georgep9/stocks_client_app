@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { GetAllStocks } from './api';
+import { StocksTable } from './tables';
 
 
 
-function Stock({name, symbol, industry}) {
-
-    return (
-        <div className="stock">
-            <ul>
-                <li>{name}</li>
-                <li>{symbol}</li>
-                <li>{industry}</li>
-            </ul>
-        </div>
-    );
-    
-}
 
 function Stocks() {
 
     const [industry, setIndustry] = useState("");
 
-    const {stocks, error} = GetAllStocks(industry);
+    const stocks = GetAllStocks(industry);
 
     
     return (
@@ -45,9 +33,8 @@ function Stocks() {
             <option value="Telecommunication Services">Telecommunication Services</option>
             </select>
 
-            {stocks.map(stock => (
-                <Stock key= {stock.name} name={stock.name} symbol={stock.symbol} industry={stock.industry}/>
-            ))}
+            <StocksTable stocks={stocks}/>
+            
 
         </div>
     );

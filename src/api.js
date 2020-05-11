@@ -2,42 +2,24 @@ import {useState, useEffect} from 'react';
 
 const API_URL = "http://131.181.190.87:3000";
 
-function FetchStocks(query){
+function GetStocks(query){
+    const [stocks, setStocks] = useState(null);
 
     const url = API_URL + "/stocks/" + query;
 
-    console.log(url);
-
-    return fetch(url)
-        .then(res => res.json())
-        .catch(e => e);
-
-}
-
-function useStocks(query){
-    const [stocks, setStocks] = useState([]);
-    const [error, setError] = useState(null);
-
     useEffect(
         () => {
-            
-            FetchStocks(query)
-                .then(stocks => {
-                    setStocks(stocks);
-                })
-                .catch(e => {
-                    setError(e);
+            if (query === null) { return undefined }
+            fetch(url)
+                .then(res => res.json())
+                .then(json => {
+                    setStocks(json);
                 })
         },
-        [query]  
+        [url, query]  
     )
 
-    console.log(stocks);
-
-    return {
-        stocks,
-        error
-    };
+    return stocks
 
 }
 
@@ -45,16 +27,52 @@ export function GetAllStocks(industry){
 
     var query = "symbols";
     industry && (query += "?industry=" + industry);
-    return  useStocks(query); 
+    return  GetStocks(query); 
 
 }
 
-export function GetParticularStock(stock){ return useStocks(stock); }
+export function GetParticularStock(stock){ return GetStocks(stock); }
+
+export function GetStockHistory(fields) {
+
+    var stock = "";
+    var from = "";
+    var to = "";
+    fields && (stock = fields.stock) && (from = fields.from) && (to = fields.to);
+
+    const token = localStorage.getItem("token");
+
+    const url = `${API_URL}/stocks/authed/${stock}?from=${from}&to=${to}`;
+
+    const [history, setHistory] = useState(null);
+
+    useEffect (
+        () => {
+            if (fields === null) { return undefined }
+            fetch(url, {
+                method: "GET",
+                headers: { 
+                    accept: "application/json", 
+                    "Content-Type": "application/json" ,
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            .then((res) => res.json())
+            .then((json) => {
+                setHistory(json);
+            })
+        },
+        [url, token, fields]
+    )
+
+    return history
+
+}
 
 
-export function LoginAPI(details){
+export function PostUser(endpoint, details){
 
-    const url = API_URL + "/user/login";
+    const url = API_URL + "/user/" + endpoint;
 
     var email = "";
     var password = "";
