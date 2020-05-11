@@ -6,7 +6,11 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 export function StocksTable(props) {
 
-    console.log(props.stocks);
+    var rowData = props.stocks;
+    if (props.stocks === null || 
+      (props.stocks && props.stocks.error)){
+        rowData = [];
+    }
 
     const columns = [
         {
@@ -37,7 +41,7 @@ export function StocksTable(props) {
       
             <AgGridReact
             columnDefs={columns}
-            rowData={props.stocks}
+            rowData={rowData}
             pagination={true}
             paginationPageSize={12}
             />
@@ -93,7 +97,7 @@ export function StockHistoryTable(props){
       <div 
         className="ag-theme-alpine"
         style={{
-            height: '360px',
+            height: '380px',
             width: '752px',
             margin: 'auto'
         }}>
