@@ -67,7 +67,11 @@
 }
 
 #error {
-  color: rgb(255, 119, 119);
+  color: rgb(255, 44, 44);
+}
+
+#success {
+  color: rgb(15, 182, 0);
 }
 
 .sideMenu label {
@@ -91,7 +95,12 @@
 
 .main {
   margin-left: 250px;
-  padding: 50px;
+  padding-top: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 50px;
+  align-content: center;
+  
 }
 
 .main button {

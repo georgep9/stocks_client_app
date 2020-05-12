@@ -36,7 +36,8 @@ function Register(){
                 
                 <Form.Group>
                     <Form.Label>Password: </Form.Label>
-                    <Form.Control onChange={(event) => setPassword(event.target.value)}/>
+                    <Form.Control type='password' 
+                        onChange={(event) => setPassword(event.target.value)}/>
                 </Form.Group>
                 <Button type='submit' variant="secondary">Register</Button>
             </Form>

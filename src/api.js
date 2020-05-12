@@ -35,6 +35,8 @@ export function GetParticularStock(stock){ return GetStocks(stock); }
 
 export function GetStockHistory(fields) {
 
+    console.log(fields);
+
     var stock = "";
     var from = "";
     var to = "";

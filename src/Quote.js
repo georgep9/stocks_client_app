@@ -7,10 +7,9 @@ import {Form, Button, FormGroup} from 'react-bootstrap';
 function Quote() {
 
   const [input, setInput] = useState("");
-  const [stock, setStock] = useState("");
+  const [stock, setStock] = useState(null);
   var entry = GetParticularStock(stock);
 
-  entry && entry.error && (entry = null);
 
   console.log(entry);
 
@@ -32,7 +31,7 @@ function Quote() {
         <Button type='submit' variant="secondary">Search</Button>
       </Form>
 
-      
+      {entry && entry.error && <p id="error">{entry.message}</p>}
 
       {entry && !entry.error && <h2>{entry.symbol} - {entry.name}</h2>}
       <StockHistoryTable entries={[entry]} />

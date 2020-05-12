@@ -53,13 +53,11 @@ export function StocksTable(props) {
 export function StockHistoryTable(props){
 
     var rowData = props.entries;
-    if (props.entries === null || 
-        props.entries[0] === null ||
-        (props.entries && props.entries.error)){
+    if (props.entries === null ||
+        props.entries.error ||
+        (props.entries[0] && props.entries[0].error)){
         rowData = [];
     }
-
-    console.log(rowData);
   
     const columns = [
       {
