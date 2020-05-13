@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 
 const API_URL = "http://131.181.190.87:3000";
 
+// endpoint: login or register     details: respective parameters
 export function PostUser(endpoint, details){
 
     const url = API_URL + "/user/" + endpoint;
@@ -14,7 +15,7 @@ export function PostUser(endpoint, details){
 
     useEffect (
         () => {
-            if (details === null) { return undefined; }
+            if (details === null) { return undefined; } // initial loading of login section
             fetch(url, {
                 method: "POST",
                 headers: { accept: "application/json", "Content-Type": "application/json" },

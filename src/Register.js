@@ -7,14 +7,15 @@ import {Form, Button} from 'react-bootstrap';
 
 function Register(){
 
-    
+    // hooks for updated form fields
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [details, setDetails] = useState(null); // parameter for API call
 
-    const [details, setDetails] = useState(null);
     const endpoint = "register";
-    const response = PostUser(endpoint, details);
+    const response = PostUser(endpoint, details); // api
 
+    // on submission, set the 'details' hook which then calls the API
     const handleSubmit = (event) => {
         setDetails(
             {
@@ -22,9 +23,10 @@ function Register(){
                 'password': password
             }
         )
-        event.preventDefault();
+        event.preventDefault(); // dont refresh
     }
 
+    // render the input form and conditional error or success message
     return (
         <div className="register">
             <h1>Create Account</h1>

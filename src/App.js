@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Home from './Home';
 import Stocks from './Stocks';
 import Quote from './Quote';
 import PriceHistory from './PriceHistory';
@@ -14,10 +15,13 @@ import Register from './Register';
 
 function App() {
 
+
+  
+  // routing for pages
   const routes = [
     { path: '/',
       exact: true,
-      main: () => <Stocks/>
+      main: () => <Home/>
     },
     { path: '/Stocks',
       main: () => <Stocks/>
@@ -34,12 +38,17 @@ function App() {
     }
   ]
 
+  // side menu and main section of app for the pages
   return (
     <div className="App">
-      <Router>
 
+      
+      <Router>
+        
         <div className="sideMenu">
           <div id="routes">
+            <Link to="/" style={{textDecoration: "none"}}>
+              <Button variant="outline-light">Home</Button></Link>
             <Link to="/Stocks" style={{textDecoration: "none"}}>
               <Button variant="outline-light">Stocks</Button></Link>
             <Link to="/Quote" style={{textDecoration: "none"}}>

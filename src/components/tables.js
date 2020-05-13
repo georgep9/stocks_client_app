@@ -4,9 +4,13 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
 
+// table component for Stocks page
 export function StocksTable(props) {
+    
+    var rowData = props.stocks; // stocks data
 
-    var rowData = props.stocks;
+    // conditionally avoid strange/error outcomes, 
+    // table should then have empty data
     if (props.stocks === null || 
       (props.stocks && props.stocks.error)){
         rowData = [];
@@ -50,9 +54,14 @@ export function StocksTable(props) {
     
 }
 
+
+// table component for quote and price history pages
 export function StockHistoryTable(props){
 
-    var rowData = props.entries;
+    var rowData = props.entries; // entries data
+
+    // conditionally avoid strange/error outcomes, 
+    // table should then have empty data
     if (props.entries === null ||
         props.entries.error ||
         (props.entries[0] && props.entries[0].error)){

@@ -6,9 +6,12 @@ import { Button, Form } from 'react-bootstrap';
 
 import { Line } from 'react-chartjs-2';
 
-
+/*
+Price History charting graph
+*/
 function HistoryGraph (props) {
 
+  // convert the API date form to basic calender form
   function getCalenderDate(entry) {
     const date = new Date(entry.timestamp);
     const year = date.getFullYear();
@@ -19,6 +22,7 @@ function HistoryGraph (props) {
     )
   }
 
+  // set the variables for graph data conditionally
   var graphLabels = [];
   var graphData = [];
   var showGraph = false;
@@ -27,9 +31,8 @@ function HistoryGraph (props) {
       graphData = props.entries.map(entry => (entry.close)).reverse();
       showGraph = true;
   }
-  console.log(graphLabels);
-  console.log(graphData);
 
+  // set the graph data
   const data = {
     labels: graphLabels,
     datasets: [
@@ -57,12 +60,14 @@ function HistoryGraph (props) {
     ]
   };
 
+  // graphing options
   const options = {
     legend: { 
       display: false 
     }
   }
 
+  // render the graph
   return ( 
     <div id="history-graph">
       {showGraph && <Line data={data} options={options}/>}
@@ -71,18 +76,21 @@ function HistoryGraph (props) {
       
 }
 
+/*
+Price History
+*/
 function PriceHistory() {
 
   
-
+  // hooks for updated input fields
   const [stock, setStock] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [fields, setFields] = useState(null); // hook for API parameter
 
-  const [fields, setFields] = useState(null);
+  const history = GetStockHistory(fields); // call api
 
-  const history = GetStockHistory(fields);
-
+  // return a render of the login form if token doesn't exist
   if (!localStorage.token){
     return (
       <div className="Price_History">
@@ -93,6 +101,7 @@ function PriceHistory() {
     )
   }
   
+  // on form submission,  set the 'fields' hook which then calls the API
   const handleSubmit = (event) => {
     setFields(
       {
@@ -101,11 +110,10 @@ function PriceHistory() {
         'to': to
       }
     )
-    event.preventDefault();
+    event.preventDefault(); // dont refresh
   }
 
-  console.log(history);
-
+  // render the input form, conditional error message, table and chart
   return (
     <div className="Price_History">
       <h1>Price History</h1>

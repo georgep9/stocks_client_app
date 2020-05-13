@@ -7,19 +7,23 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+// login form component for login section
 export function LoginForm(props){
 
+    // hooks for updated input fields
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    // on form submission, set the 'stock' hook which then calls the API
     const handleSubmit = event => {
         props.setDetails({
             'email': email,
             'password': password
         });
-        event.preventDefault();
+        event.preventDefault(); // dont refresh
     }
 
+    // render form
     return (
 
         <Form onSubmit={handleSubmit}>
@@ -41,6 +45,7 @@ export function LoginForm(props){
     )
 }
 
+// render register button if token does not exist
 function RegisterForm(){
 
     if (localStorage.token){
@@ -59,6 +64,7 @@ function RegisterForm(){
     )
 }
 
+// render logout button which removes token upon submit
 function LogoutForm(){
 
     const handleSubmit = () => {
@@ -77,28 +83,30 @@ function LogoutForm(){
 
 }
 
-
-
+// Login section
 function Login(){
 
+    // details for api parameter
     const [details, setDetails] = useState(null);
 
     const endpoint = "login";
-    const response = PostUser(endpoint, details);
+    const response = PostUser(endpoint, details); // api
 
-
+    // if api provides token, store token, refresh page
     if (response && response.token){
         localStorage.setItem("token", response.token);
         localStorage.setItem("email", details.email);
         window.location.reload(false);
     }
 
+    // if token exists, provide logout button
     if (localStorage.token){
         return (
             <LogoutForm/>
         )
     }
 
+    // render the above components
     return (
         <div>
             <div id="login-form">

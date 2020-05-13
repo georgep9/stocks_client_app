@@ -7,11 +7,11 @@ import {Form} from 'react-bootstrap';
 
 function Stocks() {
 
+    // hook to provide parameter for GetAllStocks API function
     const [industry, setIndustry] = useState("");
-
     const stocks = GetAllStocks(industry);
 
-    
+    // render input and dropdown form, followed by stocks table
     return (
 
         <div className="Stocks">

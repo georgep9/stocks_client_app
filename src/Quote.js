@@ -6,18 +6,18 @@ import {Form, Button, FormGroup} from 'react-bootstrap';
 
 function Quote() {
 
-  const [input, setInput] = useState("");
-  const [stock, setStock] = useState(null);
+
+  const [input, setInput] = useState(""); // hook for updated input field
+  const [stock, setStock] = useState(null); // hook for API parameter:
   var entry = GetParticularStock(stock);
 
-
-  console.log(entry);
-
+  // on form submission, set the 'stock' hook which then calls the API
   const handleSubmit = (event) => {
     setStock(input);
-    event.preventDefault();
+    event.preventDefault(); // dont refresh
   }
 
+  // renders input form, conditional error message, stocks history table
   return (
 
     <div className="Quote">
