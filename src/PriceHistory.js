@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Login from './Login';
-import { GetStockHistory } from './api';
-import { StockHistoryTable } from './tables';
+import { GetStockHistory } from './api/StocksAPI';
+import { StockHistoryTable } from './components/tables';
 import { Button, Form } from 'react-bootstrap';
 
 import { Line } from 'react-chartjs-2';
@@ -64,7 +64,7 @@ function HistoryGraph (props) {
   }
 
   return ( 
-    <div>
+    <div id="history-graph">
       {showGraph && <Line data={data} options={options}/>}
     </div>
   )

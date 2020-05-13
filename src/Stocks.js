@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { GetAllStocks } from './api';
-import { StocksTable } from './tables';
+import React, { useState } from 'react';
+import { GetAllStocks } from './api/StocksAPI';
+import { StocksTable } from './components/tables';
 
 import {Form} from 'react-bootstrap';
 

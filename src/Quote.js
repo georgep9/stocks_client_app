@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { GetParticularStock } from './api';
-import { StockHistoryTable } from './tables';
+import { GetParticularStock } from './api/StocksAPI';
+import { StockHistoryTable } from './components/tables';
 
 import {Form, Button, FormGroup} from 'react-bootstrap';
 

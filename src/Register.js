@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PostUser } from './api';
+import { PostUser } from './api/UserAPI';
 
 import {Form, Button} from 'react-bootstrap';
 

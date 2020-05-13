@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PostUser } from './api';
+import { PostUser } from './api/UserAPI';
 
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
